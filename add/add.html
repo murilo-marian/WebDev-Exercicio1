@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Agenda de Contatos</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <header class="cabeca">
+            <h1>Contatos</h1>
+            <img src="../imagens/person-square.svg" alt="" />
+            <a href="http://127.0.0.1:5500/main/main.html">Contatos</a>
+            <img src="../imagens/plus-square-dotted.svg" alt="" />
+            <a href="http://127.0.0.1:5500/add/add.html">Adicionar</a>
+        </header>
+        <form class="adicionar" action="">
+            <div class="form-esquerdo form-geral">
+                <div class="add-input">
+                    <label for="name">Nome</label>
+                    <input id="name" name="name" type="text" />
+                </div>
+
+                <div class="add-input">
+                    <label for="surname">Sobrenome</label>
+                    <input id="surname" name="surname" type="text" />
+                </div>
+
+                <div class="add-input">
+                    <label for="telefone">Telefone</label>
+                    <input id="telefone" name="telefone" type="tel" />
+                </div>
+                <div class="add-input">
+                    <label for="email">E-Mail</label>
+                    <input id="email" name="email" type="email" />
+                </div>
+                <div class="add-input">
+                    <label for="nascimento">Data de Nascimento</label>
+                    <input id="nascimento" name="nascimento" type="date" />
+                </div>
+                <div class="add-input">
+                    <label for="idade">Idade</label>
+                    <input type="number" name="idade" id="idade" />
+                </div>
+                <div class="add-input">
+                    <label for="parente">Parente?</label>
+                    <input id="parente" name="parente" type="checkbox" />
+                </div>
+            </div>
+
+            <div class="form-direito form-geral">
+                <div class="add-input">
+                    <label for="origem">Origem</label>
+                    <select name="origem" id="origem">
+                        <option value="1">Escola</option>
+                        <option value="2">Trabalho</option>
+                        <option value="3">Bar</option>
+                        <option value="4">Clube do Livro</option>
+                        <option value="5">Serviço</option>
+                    </select>
+                </div>
+                <div class="add-input">
+                    <label for="foto">Foto</label>
+                    <input type="file" name="foto" id="foto" />
+                </div>
+                <div class="add-input">
+                    <input value="1" type="radio" name="sexo" id="masculino" />
+                    <label for="masculino">Masculino</label>
+
+                    <input value="2" type="radio" name="sexo" id="feminino" />
+                    <label for="feminino">Feminino</label>
+
+                    <input value="0" type="radio" name="sexo" id="outro" />
+                    <label for="outro">Outro</label>
+                </div>
+                <div class="add-input">
+                    <label for="social">Rede Social</label>
+                    <input type="text" name="social" id="social" />
+                </div>
+                <div class="add-input">
+                    <input type="submit" value="Adicionar" />
+                </div>
+            </div>
+        </form>
+    </body>
+    <footer></footer>
+</html>
