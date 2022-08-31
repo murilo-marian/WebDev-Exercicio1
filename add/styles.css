@@ -1,23 +1,5 @@
-body {
-    margin: 2rem;
-  }
   
-  .cabeca {
-    margin-bottom: 15px;
-  }
-  
-  .adicionar {
-    display: grid;
-    grid-template-columns: 16rem 18rem;
-    grid-gap: 10px;
-  }
-  .adicionar .form-esquerdo {
-    grid-column: 0;
-  }
-  .adicionar .form-direto {
-    grid-column: 1;
-  }
-  .adicionar .form-geral .add-input {
-    margin-top: 5px;
-    text-align: right;
+  .main {
+    margin: 25px;
+    margin-top: 70px;
   }
