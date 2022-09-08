@@ -16,10 +16,11 @@
             type="image/x-icon"
             href="../imagens/favicon-svg.svg"
         />
+        <script src="script.js"></script>
     </head>
 
     <body>
-        <nav class="navbar fixed-top navbar-expand-lg bg-light">
+        <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <a
                     class="navbar-brand"
@@ -64,140 +65,183 @@
             <header class="cabeca">
                 <h1>Adicionar</h1>
             </header>
-            <form class="row g-3 align-items-center" action="">
-                <div class="mb-2 col-md-2">
-                    <label for="name" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="name" />
-                </div>
-                <div class="col-md-3">
-                    <label for="surname" class="form-label">Sobrenome</label>
-                    <input type="text" class="form-control" id="surname" />
-                </div>
-
-                <div class="col-md-2">
-                    <label for="tele" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" id="tele" />
-                </div>
-
-                <div class="col-md-2">
-                    <label class="form-label" for="nascimento"
-                        >Data de Nascimento</label
-                    >
-                    <input
-                        class="form-control"
-                        id="nascimento"
-                        name="nascimento"
-                        type="date"
-                    />
-                </div>
-                <div class="col-md-3">
-                    <label for="exampleInputEmail1" class="form-label"
-                        >Endereço de Email</label
-                    >
-                    <input
-                        type="email"
-                        class="form-control"
-                        id="exampleInputEmail1"
-                        aria-describedby="emailHelp"
-                    />
-                </div>
-                <div class="col-md-1">
-                    <label class="form-label" for="idade">Idade</label>
-                    <input
-                        class="form-control"
-                        type="number"
-                        name="idade"
-                        id="idade"
-                    />
-                </div>
-                <div class="col-md-2">
-                    <label class="form-label" for="origem">Origem</label>
-                    <select class="form-select" name="origem" id="origem">
-                        <option value="1">Escola</option>
-                        <option value="2">Trabalho</option>
-                        <option value="3">Bar</option>
-                        <option value="4">Clube do Livro</option>
-                        <option value="5">Serviço</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label" for="foto">Foto</label>
-                    <input
-                        class="form-control"
-                        type="file"
-                        name="foto"
-                        id="foto"
-                    />
-                </div>
-
-                <div class="col-md-2">
-                    <label class="form-label" for="social">Rede Social</label>
-                    <input
-                        class="form-control"
-                        type="text"
-                        name="social"
-                        id="social"
-                    />
-                </div>
-                <div class="col-md-1">
-                    <div class="form-check">
+            <fieldset>
+                <form class="row g-3 align-items-center" action="">
+                    <div class="col-md-2">
+                        <label for="name" class="form-label">Nome</label>
                         <input
-                            class="form-check-input"
-                            value="1"
-                            type="radio"
-                            name="sexo"
-                            id="masculino"
+                            required
+                            name="nome"
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            onblur="formataTexto('name')"
                         />
-                        <label for="masculino">Masculino</label>
                     </div>
-                    <div class="form-check">
-                        <input
-                            class="form-check-input"
-                            value="2"
-                            type="radio"
-                            name="sexo"
-                            id="feminino"
-                        />
-                        <label for="feminino">Feminino</label>
-                    </div>
-                    <div class="form-check">
-                        <input
-                            class="form-check-input"
-                            value="0"
-                            type="radio"
-                            name="sexo"
-                            id="outro"
-                        />
-                        <label for="outro">Outro</label>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-check">
-                        <input
-                            class="form-check-input"
-                            id="parente"
-                            name="parente"
-                            type="checkbox"
-                        />
-                        <label class="form-check-label" for="parente"
-                            >Parente</label
+                    <div class="col-md-3">
+                        <label for="surname" class="form-label"
+                            >Sobrenome</label
                         >
+                        <input
+                            required
+                            name="sobrenome"
+                            type="text"
+                            class="form-control"
+                            id="surname"
+                            onblur="formataTexto('surname')"
+                        />
                     </div>
-                </div>
-                <div class="mb-2 add-input">
-                    <input
-                        class="btn btn-primary"
-                        type="submit"
-                        value="Adicionar"
-                    />
-                </div>
-            </form>
+
+                    <div class="col-md-2">
+                        <label for="tele" class="form-label">Telefone</label>
+                        <input
+                            name="telefone"
+                            required
+                            type="tel"
+                            class="form-control"
+                            id="tele"
+                            onblur="formataTelefone('tele')"
+                        />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="exampleInputEmail1" class="form-label"
+                            >Endereço de Email</label
+                        >
+                        <input
+                            required
+                            name="email"
+                            type="email"
+                            class="form-control"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                        />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label" for="origem">Origem</label>
+                        <select
+                            class="form-select"
+                            name="origem"
+                            id="origem"
+                            required
+                        >
+                            <option value="1">Escola</option>
+                            <option value="2">Trabalho</option>
+                            <option value="3">Bar</option>
+                            <option value="4">Clube do Livro</option>
+                            <option value="5">Serviço</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label" for="nascimento"
+                            >Data de Nascimento</label
+                        >
+                        <input
+                            onchange="calcularIdade()"
+                            required
+                            class="form-control"
+                            id="nascimento"
+                            name="nascimento"
+                            type="date"
+                        />
+                    </div>
+                    <div class="col-md-1">
+                        <label class="form-label" for="idade">Idade</label>
+                        <input
+                            disabled
+                            required
+                            class="form-control"
+                            type="number"
+                            name="idade"
+                            id="idade"
+                        />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label" for="foto">Foto</label>
+                        <input
+                            class="form-control"
+                            type="file"
+                            name="foto"
+                            id="foto"
+                        />
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="form-label" for="social"
+                            >Rede Social</label
+                        >
+                        <input
+                            required
+                            class="form-control"
+                            type="text"
+                            name="social"
+                            id="social"
+                        />
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-check">
+                            <input
+                                required
+                                class="form-check-input"
+                                value="1"
+                                type="radio"
+                                name="sexo"
+                                id="masculino"
+                            />
+                            <label for="masculino">Masculino</label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                required
+                                class="form-check-input"
+                                value="2"
+                                type="radio"
+                                name="sexo"
+                                id="feminino"
+                            />
+                            <label for="feminino">Feminino</label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                required
+                                class="form-check-input"
+                                value="0"
+                                type="radio"
+                                name="sexo"
+                                id="outro"
+                            />
+                            <label for="outro">Outro</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                id="parente"
+                                name="parente"
+                                type="checkbox"
+                            />
+                            <label class="form-check-label" for="parente"
+                                >Parente</label
+                            >
+                        </div>
+                    </div>
+                    <div class="mb-2 add-input">
+                        <input class="btn btn-primary" type="submit" />
+                    </div>
+                </form>
+            </fieldset>
         </div>
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
             crossorigin="anonymous"
         ></script>
+        <script>
+            const form = document.querySelector("form");
+            form.addEventListener("submit", (e) => pegaSubmit(e));
+        </script>
     </body>
     <footer></footer>
 </html>
