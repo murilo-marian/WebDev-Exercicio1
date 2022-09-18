@@ -22,10 +22,7 @@
     <body>
         <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-light">
             <div class="container-fluid">
-                <a
-                    class="navbar-brand"
-                    href="http://127.0.0.1:5500/main/main.html"
-                >
+                <a class="navbar-brand" href="../main/main.php">
                     <img
                         src="../imagens/person-square.svg"
                         alt=""
@@ -51,9 +48,7 @@
                 >
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a
-                                class="nav-link"
-                                href="http://127.0.0.1:5500/add/add.html"
+                            <a class="nav-link" href="../add/add.html"
                                 >Adicionar</a
                             >
                         </li>
@@ -66,7 +61,11 @@
                 <h1>Adicionar</h1>
             </header>
             <fieldset>
-                <form class="row g-3 align-items-center" action="">
+                <form
+                    class="row g-3 align-items-center"
+                    action="acao.php"
+                    method="post"
+                >
                     <div class="col-md-2">
                         <label for="name" class="form-label">Nome</label>
                         <input
@@ -125,11 +124,12 @@
                             id="origem"
                             required
                         >
-                            <option value="1">Escola</option>
-                            <option value="2">Trabalho</option>
-                            <option value="3">Bar</option>
-                            <option value="4">Clube do Livro</option>
-                            <option value="5">Serviço</option>
+                            <option value="Escola">Escola</option>
+                            <option value="Trabalho">Trabalho</option>
+                            <option value="Bar">Bar</option>
+                            <option value="Clube do Livro">
+                                Clube do Livro
+                            </option>
                         </select>
                     </div>
                     <div class="col-md-2">
@@ -238,10 +238,11 @@
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
             crossorigin="anonymous"
         ></script>
+        <!-- 
         <script>
             const form = document.querySelector("form");
             form.addEventListener("submit", (e) => pegaSubmit(e));
-        </script>
+        </script> -->
     </body>
     <footer></footer>
 </html>

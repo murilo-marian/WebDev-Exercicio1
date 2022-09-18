@@ -31,11 +31,11 @@ function formataTexto(formId) {
     return document.getElementById(formId).value = str;
 }
 
-function pegaSubmit(event) {
+/* function pegaSubmit(event) {
     event.preventDefault();
 
     const dados = new FormData(event.target);
     const valor= Object.fromEntries(dados.entries());
 
-    alert(JSON.stringify(valor, null, 2));
-}
+    JSON.stringify(valor, null, 2);
+} */
