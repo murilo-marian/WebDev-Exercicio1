@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <?php
-$str_data = file_get_contents('../add/contatos.json');
-$dados = json_decode($str_data);
-
+include "../add/acao.php";
+$displayArray = puxaDadosJSON();
 ?>
 
 
@@ -28,7 +27,7 @@ $dados = json_decode($str_data);
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="../add/add.html">Adicionar</a>
+                        <a class="nav-link" href="../add/add.php">Adicionar</a>
                     </li>
                 </ul>
             </div>
@@ -58,21 +57,24 @@ $dados = json_decode($str_data);
                             <th>Telefone</th>
                             <th>Origem</th>
                             <th>Social</th>
+                            <th>Nascimento</th>
+                            <th>Alterar</th>
+                            <th>Deletar</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                         <?php
-                        if ($dados != null) {
-                            foreach ($dados as $dado) { ?>
-                                <tr>
-                                    <td> <?= $dado->Nome; ?> </td>
-                                    <td> <?= $dado->Telefone; ?> </td>
-                                    <td> <?= $dado->Origem; ?> </td>
-                                    <td> <?= $dado->Social; ?> </td>
-
-                                </tr>
-                        <?php }
-                        } ?>
+                        foreach ($displayArray as $dado) { ?>
+                            <tr>
+                                <td> <?= $dado['ID']; ?> </td>
+                                <td> <?= $dado['Nome']; ?> </td>
+                                <td> <?= $dado['Telefone']; ?> </td>
+                                <td> <?= $dado['Origem']; ?> </td>
+                                <td> <?= $dado['Social']; ?> </td>
+                                <td><a href='../add/add.php?acao=editar&ID=<?= $dado['ID'] ?>'>Alt</a></td>
+                                <td><a href='main.php?acao=excluir&ID=<?= $dado['ID'] ?>'>>Exc</a></td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
