@@ -1,6 +1,8 @@
 <?php
 
-function carregarDados()
+//Verssão com JSON
+
+/* function carregarDados()
 {
     if (isset($_POST['id'])) {
         $ID = $_POST['id'];
@@ -110,4 +112,55 @@ function excluir($id)
     }
     array_splice($dados, $i, 1);
     fwrite($caminho, json_encode($dados, JSON_PRETTY_PRINT));
+} */
+
+//Versão com BD:
+
+$nome = $_POST['nome'];
+$sobrenome = $_POST['sobrenome'];
+$telefone = $_POST['telefone'];
+$email = $_POST['email'];
+$origem = $_POST['origem'];
+$data = $_POST['nascimento'];
+$idade = $_POST['idade'];
+$social = $_POST['social'];
+$genero = $_POST['sexo'];
+$parente = isset($_POST['parente']) ? true : false;
+
+if ($nome != "") {
+    include_once "../conexao/conf.inc.php";
+    try {
+        $conexao = new PDO(MYSQL_DSN, DB_USER, DB_PASSWORD);
+
+        //query
+        if ($_GET['acao'] == 'salvar') {
+            $query = 'INSERT INTO contatos(nome, sobrenome, telefone, email, origem, nascimento, idade, social, sexo, parente) values (:nome, :sobrenome, :telefone, :email, :origem, :nascimento, :idade, :social, :sexo, :parente)';
+        } else {
+            $query = 'UPDATE contatos SET nome = :nome, sobrenome = :sobrenome, telefone = :telefone, email = :email, origem = :origem,
+            nascimento = :nascimento, idade = :idade, social = :social, sexo = :sexo, parente = :parente WHERE id = :id';
+        }
+        //preparar consulta
+        $stmt = $conexao->prepare($query);
+        //vincular variaveis de consulta
+        if (isset($_GET['id'])) {
+            $stmt->bindValue(':id', $_GET['id']);
+        }
+        $stmt->bindValue(':nome', $nome);
+        $stmt->bindValue(':sobrenome', $sobrenome);
+        $stmt->bindValue(':telefone', $telefone);
+        $stmt->bindValue(':email', $email);
+        $stmt->bindValue(':origem', $origem);
+        $stmt->bindValue(':nascimento', $data);
+        $stmt->bindValue(':idade', $idade);
+        $stmt->bindValue(':social', $social);
+        $stmt->bindValue(':sexo', $genero);
+        $stmt->bindValue(':parente', $parente);
+        //executar
+        $stmt->execute();
+
+        header('location: ../main/main.php');
+    } catch (PDOException $e) {
+        print('Erro  ao conectar como banco  de dados... <br>' . $e->getMessage());
+        die();
+    }
 }

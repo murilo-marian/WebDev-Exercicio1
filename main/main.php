@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
-include "../add/acao.php";
-$displayArray = puxaDadosJSON();
+include "showTable.php";
 ?>
 
 
@@ -45,34 +44,41 @@ $displayArray = puxaDadosJSON();
                 <li>Email: teste@gmail.com</li>
             </ul>
         </div>
+        <form action="main.php" method="get" class="mb-3 col-md-2">
+            <label for="pesquisa" class="form-label">Pesquisa</label>
+            <input type="text" class="form-control" name="pesquisa" id="pesquisa" placeholder="Nome ou Sobrenome">
+            <button class=" mt-2 btn btn-primary" type="submit">Pesquisar</button>
+        </form>
         <div class="row">
-            <div class="col-md-5 table-responsive">
+            <div class="col-md-7 table-responsive">
                 <caption>
                     Contatos
                 </caption>
                 <table class="table mt-1 table-bordered table-striped table-hover">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Nome</th>
+                            <th>Sobrenome</th>
                             <th>Telefone</th>
                             <th>Origem</th>
                             <th>Social</th>
-                            <th>Nascimento</th>
                             <th>Alterar</th>
                             <th>Deletar</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                         <?php
-                        foreach ($displayArray as $dado) { ?>
+                        foreach ($result as $dado) { ?>
                             <tr>
-                                <td> <?= $dado['ID']; ?> </td>
-                                <td> <?= $dado['Nome']; ?> </td>
-                                <td> <?= $dado['Telefone']; ?> </td>
-                                <td> <?= $dado['Origem']; ?> </td>
-                                <td> <?= $dado['Social']; ?> </td>
-                                <td><a href='../add/add.php?acao=editar&ID=<?= $dado['ID'] ?>'>Alt</a></td>
-                                <td><a href='main.php?acao=excluir&ID=<?= $dado['ID'] ?>'>>Exc</a></td>
+                                <td> <?= $dado['id']; ?> </td>
+                                <td> <?= $dado['nome']; ?> </td>
+                                <td> <?= $dado['sobrenome']; ?> </td>
+                                <td> <?= $dado['telefone']; ?> </td>
+                                <td> <?= $dado['origem']; ?> </td>
+                                <td> <?= $dado['social']; ?> </td>
+                                <td><a href="../add/add.php?id=<?= $dado['id']; ?>">Edit</a></td>
+                                <td><a href="delete.php?id=<?= $dado['id']; ?>">Del</a></td>
                             </tr>
                         <?php } ?>
                     </tbody>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
-include "acao.php";
+if (isset($_GET['id'])) {
+    include_once '../main/edit.php';
+}
 ?>
 <html lang="pt-br">
 
@@ -36,47 +38,47 @@ include "acao.php";
             <h1>Adicionar</h1>
         </header>
         <fieldset>
-            <form class="row g-3 align-items-center" action="acao.php" method="post">
+            <form class="row g-3 align-items-center" action="acao.php?acao=<?= isset($_GET['id']) ? 'editar&id=' . $result['id']  : 'salvar'; ?>" method="post">
                 <div>
                     <label for="id" class="form-label">ID</label>
-                    <input type="text" name="id" id="id" readonly value="<?= isset($contato['ID']) ? $contato['ID'] : '' ?>">
+                    <input type="text" name="id" id="id" readonly value="<?= isset($result['id']) ? $result['id'] : '' ?>">
                 </div>
                 <div class="col-md-2">
                     <label for="name" class="form-label">Nome</label>
-                    <input required name="nome" type="text" value="<?= isset($contato['Nome']) ? $contato['Nome'] : '' ?>" class="form-control" id="name" onblur="formataTexto('name')" />
+                    <input required name="nome" type="text" value="<?= isset($result['nome']) ? $result['nome'] : '' ?>" class="form-control" id="name" onblur="formataTexto('name')" />
                 </div>
                 <div class="col-md-3">
                     <label for="surname" class="form-label">Sobrenome</label>
-                    <input required name="sobrenome" type="text" value="<?= isset($contato['Sobrenome']) ? $contato['Sobrenome'] : '' ?>" class="form-control" id="surname" onblur="formataTexto('surname')" />
+                    <input required name="sobrenome" type="text" value="<?= isset($result['sobrenome']) ? $result['sobrenome'] : '' ?>" class="form-control" id="surname" onblur="formataTexto('surname')" />
                 </div>
 
                 <div class="col-md-2">
                     <label for="tele" class="form-label">Telefone</label>
-                    <input name="telefone" type="tel" value="<?= isset($contato['Telefone']) ? $contato['Telefone'] : '' ?>" required class="form-control" id="tele" onblur="formataTelefone('tele')" />
+                    <input name="telefone" type="tel" value="<?= isset($result['telefone']) ? $result['telefone'] : '' ?>" required class="form-control" id="tele" onblur="formataTelefone('tele')" />
                 </div>
 
                 <div class="col-md-3">
                     <label for="exampleInputEmail1" class="form-label">Endereço de Email</label>
-                    <input required name="email" type="email" value="<?= isset($contato['Email']) ? $contato['Email'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                    <input required name="email" type="email" value="<?= isset($result['email']) ? $result['email'] : '' ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                 </div>
                 <div class="col-md-2">
                     <label class="form-label" for="origem">Origem</label>
                     <select class="form-select" name="origem" id="origem" required>
-                        <option value="Escola" <?php if (isset($contato) and $contato['Origem'] == 'Escola') echo 'selected'; ?>>Escola</option>
-                        <option value="Trabalho" <?php if (isset($contato) and $contato['Origem'] == 'Trabalho') echo 'selected'; ?>>Trabalho</option>
-                        <option value="Bar" <?php if (isset($contato) and $contato['Origem'] == 'Bar') echo 'selected'; ?>>Bar</option>
-                        <option value="Clube do Livro" <?php if (isset($contato) and $contato['Origem'] == 'Clube do Livro') echo 'selected'; ?>>
+                        <option value="Escola" <?php if (isset($result) and $result['origem'] == 'Escola') echo 'selected'; ?>>Escola</option>
+                        <option value="Trabalho" <?php if (isset($result) and $result['origem'] == 'Trabalho') echo 'selected'; ?>>Trabalho</option>
+                        <option value="Bar" <?php if (isset($result) and $result['origem'] == 'Bar') echo 'selected'; ?>>Bar</option>
+                        <option value="Clube do Livro" <?php if (isset($result) and $result['origem'] == 'Clube do Livro') echo 'selected'; ?>>
                             Clube do Livro
                         </option>
                     </select>
                 </div>
                 <div class="col-md-2">
                     <label class="form-label" for="nascimento">Data de Nascimento</label>
-                    <input value="<?= isset($contato['Data']) ? $contato['Data'] : '' ?>" onchange="calcularIdade()" required class="form-control" id="nascimento" name="nascimento" type="date" />
+                    <input value="<?= isset($result['nascimento']) ? $result['nascimento'] : '' ?>" onchange="calcularIdade()" required class="form-control" id="nascimento" name="nascimento" type="date" />
                 </div>
                 <div class="col-md-1">
                     <label class="form-label" for="idade">Idade</label>
-                    <input readonly required value="<?= isset($contato['Idade']) ? $contato['Idade'] : '' ?>" class="form-control" type="number" name="idade" id="idade" />
+                    <input readonly required value="<?= isset($result['idade']) ? $result['idade'] : '' ?>" class="form-control" type="number" name="idade" id="idade" />
                 </div>
 
                 <div class="col-md-4">
@@ -86,25 +88,25 @@ include "acao.php";
 
                 <div class="col-md-2">
                     <label class="form-label" for="social">Rede Social</label>
-                    <input required class="form-control" value="<?= isset($contato['Social']) ? $contato['Social'] : '' ?>" type="text" name="social" id="social" />
+                    <input required class="form-control" value="<?= isset($result['social']) ? $result['social'] : '' ?>" type="text" name="social" id="social" />
                 </div>
                 <div class="col-md-1">
                     <div class="form-check">
-                        <input required class="form-check-input" <?php if (isset($contato) and $contato['Genero'] == '1') echo 'checked'; ?> value="1" type="radio" name="sexo" id="masculino" />
+                        <input required class="form-check-input" <?php if (isset($result) and $result['sexo'] == '1') echo 'checked'; ?> value="1" type="radio" name="sexo" id="masculino" />
                         <label for="masculino">Masculino</label>
                     </div>
                     <div class="form-check">
-                        <input required class="form-check-input" <?php if (isset($contato) and $contato['Genero'] == '2') echo 'checked'; ?> value="2" type="radio" name="sexo" id="feminino" />
+                        <input required class="form-check-input" <?php if (isset($result) and $result['sexo'] == '2') echo 'checked'; ?> value="2" type="radio" name="sexo" id="feminino" />
                         <label for="feminino">Feminino</label>
                     </div>
                     <div class="form-check">
-                        <input required class="form-check-input" <?php if (isset($contato) and $contato['Genero'] == '0') echo 'checked'; ?> value="0" type="radio" name="sexo" id="outro" />
+                        <input required class="form-check-input" <?php if (isset($result) and $result['sexo'] == '0') echo 'checked'; ?> value="0" type="radio" name="sexo" id="outro" />
                         <label for="outro">Outro</label>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-check">
-                        <input class="form-check-input" <?php if (isset($contato) and $contato['Parente'] == 'on') echo 'checked'; ?> id="parente" name="parente" type="checkbox" />
+                        <input class="form-check-input" <?php if (isset($result) and $result['parente'] == 'on') echo 'checked'; ?> id="parente" name="parente" type="checkbox" />
                         <label class="form-check-label" for="parente">Parente</label>
                     </div>
                 </div>
