@@ -5,20 +5,18 @@ try {
     $conexao = new PDO(MYSQL_DSN, DB_USER, DB_PASSWORD);
 
     //query
+    $query = 'SELECT id, nome, sobrenome, telefone, origem, social FROM contatos';
+
     if (isset($_GET['pesquisa'])) {
         if ($_GET['pesquisa'] != '') {
-            $query = 'SELECT id, nome, sobrenome, telefone, origem, social FROM contatos WHERE nome LIKE :pesquisa OR sobrenome LIKE :pesquisa';
-        } else {
-            $query = 'SELECT id, nome, sobrenome, telefone, origem, social FROM contatos';
+            $query .= ' WHERE nome LIKE :pesquisa OR sobrenome LIKE :pesquisa';
         }
-    } else {
-        $query = 'SELECT id, nome, sobrenome, telefone, origem, social FROM contatos';
     }
     //preparar consulta
     $stmt = $conexao->prepare($query);
     if (isset($_GET['pesquisa'])) {
         if ($_GET['pesquisa'] != '') {
-            $stmt->bindValue(':pesquisa', "%" . $_GET['pesquisa'], PDO::PARAM_STR);
+            $stmt->bindValue(':pesquisa', $_GET['pesquisa'] . "%", PDO::PARAM_STR);
         }
     }
     //executar

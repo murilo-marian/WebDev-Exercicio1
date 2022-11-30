@@ -45,8 +45,10 @@ include "showTable.php";
             </ul>
         </div>
         <form action="main.php" method="get" class="mb-3 col-md-2">
-            <label for="pesquisa" class="form-label">Pesquisa</label>
-            <input type="text" class="form-control" name="pesquisa" id="pesquisa" placeholder="Nome ou Sobrenome">
+            <div class="form-floating">
+                <input type="text" class="form-control" name="pesquisa" id="pesquisa" placeholder="Nome ou Sobrenome">
+                <label for="pesquisa" class="">Pesquisa</label>
+            </div>
             <button class=" mt-2 btn btn-primary" type="submit">Pesquisar</button>
         </form>
         <div class="row">
